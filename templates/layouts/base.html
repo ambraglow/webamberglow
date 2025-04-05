@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> {{ .title }} </title>
+        <link href="/assets/styles/default.less" rel="stylesheet/less" type="text/css">
+        <link href="/assets/styles/{{ .style }}" rel="stylesheet/less" type="text/css">
+        <script src="/assets/less.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul id="navmenu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            {{ template "content" .}}
+        </main>
+        <footer>
+            <ul id="socials">
+                <li><a href="https://github.com/ambraglow"><img src="/assets/images/github.png"></a></li>
+                <li><a href="https://bsky.app/profile/ambraglow.org"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Bluesky_Logo.svg"></a></li>
+            </ul>
+            <ul id="buttons">
+                <li><img src="/assets/buttons/cat.gif"></li>
+                <li><img src="/assets/buttons/antifa.gif"></li>
+                <li><img src="/assets/buttons/github.gif"></li>
+                <li><img src="/assets/buttons/noaa.gif"></li>
+                <li><img src="/assets/buttons/transnow.gif"></li>
+            </ul>
+            <a id="theme" href="/"><img src="assets/images/yadayada"></a>
+        </footer>
+    </body>
+</html>

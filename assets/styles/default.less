@@ -1,0 +1,91 @@
+@bg-color: #131313 * 1.5;
+@header-color: #efac00;
+@border-color: #fff1ce;
+@link-hover-color: #ffb8edf2;
+@link-color: (@link-hover-color * 1.2);
+
+.titles {
+    text-align: center;
+    color: @header-color;
+}
+
+.rowflex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.colflex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.links {
+    ul {
+        margin: 0;
+    }
+    li {
+        list-style: none;
+    }
+    a {
+        text-decoration: underline 0.10em rgba(255, 255, 255, 0);
+        transition: text-decoration-color 300ms;
+        
+        &:visited {
+            color: @link-color;
+        }
+
+        &:hover {
+            text-decoration-color: @link-hover-color;
+        }
+    }
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: @bg-color;
+    a {
+        font-size: 1.2rem;
+    }
+    p {
+        font-size: 0.9rem;
+    }
+    .colflex();
+}
+
+header {
+    nav #navmenu {
+        .rowflex();
+        .links();
+    }
+}
+
+footer {
+    .links();
+    #socials {
+        .rowflex();
+        img {
+            filter: brightness(0) saturate(100%) invert(91%) sepia(9%) saturate(500%) hue-rotate(275deg) brightness(105%) contrast(98%);
+            width: 2rem;
+            height: 2rem;
+            &:hover {
+                filter: brightness(0) saturate(100%) invert(92%) sepia(18%) saturate(400%) hue-rotate(290deg) brightness(95%) contrast(90%);
+            }
+        }
+    }
+    #buttons {
+        .rowflex();
+    }
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}

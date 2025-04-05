@@ -1,0 +1,16 @@
+{{define "content"}}
+<p>Hello, welcome to my website! I do silly things such as hardware hacking, designing PCBs,
+    sometimes coding (C#, C, C++ and sometimes Python) and i'm really into photography - Team Nikon!
+    I'm also fascinated by the world of amateur radio, having done my fair share of experimentation
+    in the past years, planning to get my license at some point.</p>
+<ul id="recentblog">
+    {{range .posts}}
+        {{if .Done}}
+            <li class="post">{{.Title}}</li>
+        {{else}}
+            <li>yadayada</li>
+        {{end}}
+    {{end}}
+</ul>
+{{end}}
+
