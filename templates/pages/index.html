@@ -1,24 +1,27 @@
 {{define "content"}}
-<p>Hello, welcome to my website! I do silly things such as hardware hacking, designing PCBs,
-    sometimes coding (C#, C, C++ and sometimes Python) and i'm really into photography - Team Nikon!
-    I'm also fascinated by the world of amateur radio, having done my fair share of experimentation
-    in the past years, planning to get my license at some point.</p>
-<h1>Recent posts:</h1>
-<div id="posts">
-{{range .posts}}
-    <div id="blogpostpreview"> 
-        <ul>
-            <li id="BlogPostTitle">{{.Title}}</li>
-            {{if .Summary}}
-            <li id="Summary">{{.Summary}}</li>
-            {{end}}
-            {{range .Tags}}
-                <li id="Tags">{{.}}</li>
-            {{end}}
-        </ul>
-    </div>
-{{end}}
+
+<div id="intro">
+    <a id="selfietext"><img src="data:," alt>Hello ^_^</a>
+    <p>Hi, welcome to my website!<br>
+        I go by Ambra, from Italy, 19 years old.
+        This website will include a blog section and a section dedicated to my hobbies and various projects.
+    </p>
 </div>
 
-{{end}}
+<div id="intro2">
+    <div id="posts">
+        <h1>Recent posts</h1>
+        {{range .posts}}
+        <div id="blogpostpreview"> 
+            <ul>
+                <li id="BlogPostTitle">{{.Title}}</li>
+                <button href="/">-></button>
+            </ul>
+        </div>
+        {{end}}
+    </div>
+    <div id="emptydiv">
 
+    </div>
+</div>
+{{end}}

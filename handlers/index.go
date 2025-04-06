@@ -16,6 +16,6 @@ func IndexRoute(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		"title": "./Ambraglow/hideout",
 		"style": "index.less",
-		"posts": slice(Posts, 0, 4),
+		"posts": slice(Posts, 0, 3),
 	})
 }

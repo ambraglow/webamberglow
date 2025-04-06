@@ -1,28 +1,17 @@
 @import url("style.less");
 
-html,
-body,
-ul,
-p,
-h1,
-h2,
-h3 {
-    margin: 0;
-    padding: 0;
-}
-
 :root[data-theme="theme-light"] {
     --bg-color: #fff6ee;
-    --link-hover-color: #ffb8edf2;
-    --link-color: #ffddff;
+    --link-color: #ffaaff;
+    --link-hover-color: #ffaad4;
     --p-color: #000000;
     --img-invert: 1;
 }
 
 :root[data-theme="theme-dark"] {
     --bg-color: #1d1d1d;
-    --link-hover-color: #ffb8edf2;
     --link-color: #ffddff;
+    --link-hover-color: #eeddff;
     --p-color: #ffff;
     --img-invert: 0;
 }
@@ -31,34 +20,20 @@ html {
     background-color: var(--bg-color);
 }
 
-.rowflex {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.colflex {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
 li {
     list-style: none;
     a {
         font-size: 1.3rem;
-        color: var(--link-color);
+        color: @link-color;
         text-decoration: underline 0.10em rgba(255, 255, 255, 0);
         transition: text-decoration-color 300ms;
             
         &:visited {
-            color: var(--link-color);
+            color: @link-color;
         }
     
         &:hover {
-            text-decoration-color: var(--link-hover-color);
+            text-decoration-color: @link-hover-color;
         }
     }
     user-select: none;
@@ -80,7 +55,8 @@ body {
 }
 
 main {
-    p {
+    p, 
+    a {
         color: var(--p-color);
         font-family: 'Iosevka Etoile Web Light';
     }
@@ -99,7 +75,7 @@ header {
         font-size: 32px;
         font-style: italic;
         color: transparent;
-        background: linear-gradient(var(--link-hover-color), var(--link-color), var(--link-hover-color));
+        background: linear-gradient(@link-hover-color, @link-color, @link-hover-color);
         background-clip: text;
     }
     nav #navmenu {
@@ -115,33 +91,37 @@ footer {
     width: 100%;
     position: absolute;
     bottom: 0;
-    background-color: #1d1d1d;
     #socials {
         .rowflex();
+        gap: 0.5rem;
         img {
             filter: brightness(0) saturate(100%) invert(91%) sepia(9%) saturate(500%) hue-rotate(275deg) brightness(105%) contrast(98%) invert(var(--img-invert));
-            width: 2rem;
-            height: 2rem;
+            width: 1.6rem;
+            height: 1.6rem;
             &:hover {
                 filter: brightness(0) saturate(100%) invert(92%) sepia(18%) saturate(400%) hue-rotate(290deg) brightness(95%) contrast(90%) invert(var(--img-invert));
             }
         }
     }
     #buttons {
+        margin-top: 0.5rem;
         .rowflex();
+        gap: 0.1rem;
     }
     div {
         position: inherit;
         bottom: 0;
         a {
-            font-size: 12px;
-            font-style: italic;
-            color: @header-color;
-            opacity: 50%;
+            .alttext();
         }
         button {
+            background: none;
             border: none;
             color: gray;
+            
+            &:hover {
+                cursor:pointer;
+            }
         }
     }
 

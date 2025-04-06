@@ -1,7 +1,6 @@
-@header-color: #efac00;
 @highlighter-color: #fff1ce;
-@link-hover-color: #ffb8edf2;
-@link-color: (@link-hover-color * 1.2);
+@link-hover-color: #eeddff;
+@link-color: #ffddff;
 @tag-color: rgb(160, 160, 160);
 
 @font-face {
@@ -20,4 +19,48 @@
 	font-stretch: normal;
 	font-style: normal;
 	src: url('../fonts/IosevkaEtoile-Light.ttf') format('truetype');
+}
+
+.rowflex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.colflex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.header {
+	font-size: 20px;
+	font-family: 'Iosevka Etoile Web';
+	color: var(--link-color);
+}
+
+.header2 {
+	font-size: 14px;
+	font-weight: bolder;
+	font-family: 'Iosevka Etoile Web Light';
+	color: var(--link-hover-color);
+}
+
+.alttext {
+	font-size: 12px;
+	font-style: italic;
+	color: fadeout(#ddffdd,80%);
+}
+
+html,
+body,
+ul,
+p,
+h1,
+h2,
+h3 {
+    margin: 0;
+    padding: 0;
 }
