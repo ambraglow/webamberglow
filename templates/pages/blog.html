@@ -1,0 +1,17 @@
+{{define "content"}}
+
+{{range .posts}}
+    <div id="blogpostpreview"> 
+        <ul>
+            <li id="BlogPostTitle">{{.Title}}</li>
+            {{if .Summary}}
+            <li id="Summary">{{.Summary}}</li>
+            {{end}}
+            {{range .Tags}}
+                <li id="Tags">{{.}}</li>
+            {{end}}
+        </ul>
+    </div>
+{{end}}
+
+{{end}}

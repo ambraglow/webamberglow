@@ -3,14 +3,22 @@
     sometimes coding (C#, C, C++ and sometimes Python) and i'm really into photography - Team Nikon!
     I'm also fascinated by the world of amateur radio, having done my fair share of experimentation
     in the past years, planning to get my license at some point.</p>
-<ul id="recentblog">
-    {{range .posts}}
-        {{if .Done}}
-            <li class="post">{{.Title}}</li>
-        {{else}}
-            <li>yadayada</li>
-        {{end}}
-    {{end}}
-</ul>
+<h1>Recent posts:</h1>
+<div id="posts">
+{{range .posts}}
+    <div id="blogpostpreview"> 
+        <ul>
+            <li id="BlogPostTitle">{{.Title}}</li>
+            {{if .Summary}}
+            <li id="Summary">{{.Summary}}</li>
+            {{end}}
+            {{range .Tags}}
+                <li id="Tags">{{.}}</li>
+            {{end}}
+        </ul>
+    </div>
+{{end}}
+</div>
+
 {{end}}
 

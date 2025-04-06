@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="">
     <head>
         <title> {{ .title }} </title>
         <link href="/assets/styles/default.less" rel="stylesheet/less" type="text/css">
@@ -10,6 +10,7 @@
     <body>
         <header>
             <nav>
+                <a id="title"> {{.title}} </a>
                 <ul id="navmenu">
                     <li><a href="/">Home</a></li>
                     <li><a href="/blog">Blog</a></li>
@@ -20,8 +21,12 @@
             {{ template "content" .}}
         </main>
         <footer>
+            <div>
+                <button onclick="switchTheme()">suffering</button>
+                <a>~ WIP: eye laser mode</a>
+            </div>
             <ul id="socials">
-                <li><a href="https://github.com/ambraglow"><img src="/assets/images/github.png"></a></li>
+                <li><a href="https://github.com/ambraglow"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Github_logo_svg.svg"></a></li>
                 <li><a href="https://bsky.app/profile/ambraglow.org"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Bluesky_Logo.svg"></a></li>
             </ul>
             <ul id="buttons">
@@ -31,7 +36,38 @@
                 <li><img src="/assets/buttons/noaa.gif"></li>
                 <li><img src="/assets/buttons/transnow.gif"></li>
             </ul>
-            <a id="theme" href="/"><img src="assets/images/yadayada"></a>
         </footer>
+        <script>
+            const html = document.querySelector("html")
+
+            function setTheme(theme) {
+                if (theme !== "dark" && theme !== "light") {
+                    return alert("invalid theme selection!" + theme);
+                }
+                
+                html.dataset.theme = `theme-${theme}`
+                window.localStorage.setItem('override-color', theme)
+            }
+            
+            function switchTheme() {
+                const theme = html.dataset.theme.substring('theme-'.length)
+                setTheme(theme === 'dark' ? 'light' : 'dark')
+            }
+            
+            const osColors = window.matchMedia('(prefers-color-scheme: dark)');
+            const overrideColor = window.localStorage.getItem('override-color')
+            
+            if (overrideColor !== "dark" || overrideColor !== "light") {
+                setTheme(osColors.matches ? 'dark' : 'light')
+            } else {
+                setTheme(overrideColor)
+            }
+
+            osColors.addEventListener('change', function(e) {
+                const isDark = e.matches
+                setTheme(isDark ? 'dark' : 'light')
+            })
+        </script>
     </body>
+
 </html>

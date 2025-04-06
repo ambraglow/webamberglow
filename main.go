@@ -13,11 +13,13 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 
+	handlers.BlogMarkdownInit()
+
 	router.Static("/assets", "./assets")
 	router.HTMLRender = loadTemplates("templates")
 
 	router.GET("/", handlers.IndexRoute)
-	//router.GET("/blog")
+	router.GET("/blog", handlers.BlogRoute)
 
 	if err := router.Run(":80"); err != nil {
 		log.Fatal(err)
