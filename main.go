@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"path/filepath"
 	"website/handlers"
@@ -9,7 +10,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+var (
+	bindPort = flag.String("p", "port", "port to bind webserver to")
+)
+
 func main() {
+	flag.Parse()
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 
@@ -21,7 +27,7 @@ func main() {
 	router.GET("/", handlers.IndexRoute)
 	router.GET("/blog", handlers.BlogRoute)
 
-	if err := router.Run(":3000"); err != nil {
+	if err := router.Run(":" + *bindPort); err != nil {
 		log.Fatal(err)
 	}
 }
