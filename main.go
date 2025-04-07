@@ -21,7 +21,7 @@ func main() {
 	router.GET("/", handlers.IndexRoute)
 	router.GET("/blog", handlers.BlogRoute)
 
-	if err := router.Run(":80"); err != nil {
+	if err := router.Run(":3000"); err != nil {
 		log.Fatal(err)
 	}
 }
