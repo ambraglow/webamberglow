@@ -26,6 +26,7 @@ func main() {
 
 	router.GET("/", handlers.IndexRoute)
 	router.GET("/blog", handlers.BlogRoute)
+	router.GET("/blog/:Id", handlers.GetPost)
 
 	if err := router.Run(":" + *bindPort); err != nil {
 		log.Fatal(err)

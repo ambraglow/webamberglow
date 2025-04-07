@@ -11,11 +11,9 @@ func slice(a []Blogpost, start, end int) []Blogpost {
 }
 
 func IndexRoute(c *gin.Context) {
-	Posts := BlogPostMetadata()
-
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		"title": "./Ambraglow/hideout",
 		"style": "index.less",
-		"posts": slice(Posts, 0, 3),
+		"posts": Posts,
 	})
 }

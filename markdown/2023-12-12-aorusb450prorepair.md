@@ -1,5 +1,6 @@
 ---
 Title: Gigabyte Aorus B450 pro motherboard repair
+Id: 2
 Summary: repair of an AM4 chipset Motherboard with faulty spi chips
 ---
 

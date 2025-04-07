@@ -1,5 +1,6 @@
 ---
 Title: 858D hot air rework station teardown
+Id: 1
 Summary : a small attempt to reverse engineer a cheap hot air gun station bought from aliexpress
 Tags:  
     - Hardware hacking

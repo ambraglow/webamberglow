@@ -3,6 +3,7 @@ package handlers
 import (
 	"bytes"
 	"fmt"
+	"html/template"
 	"os"
 	"path/filepath"
 
@@ -10,48 +11,61 @@ import (
 	meta "github.com/yuin/goldmark-meta"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
+	"github.com/yuin/goldmark/renderer/html"
 )
 
-var md goldmark.Markdown
+var MD goldmark.Markdown
+
+var Posts []Blogpost
 
 type Blogpost struct {
 	Title   string
 	Summary string
 	Tags    []string
+	Content template.HTML
 }
 
 func BlogMarkdownInit() {
-	md = goldmark.New(
+	MD = goldmark.New(
 		goldmark.WithExtensions(
 			meta.Meta,
 			extension.Linkify,
 		),
+		goldmark.WithParserOptions(
+			parser.WithAutoHeadingID(),
+		),
+		goldmark.WithRendererOptions(
+			html.WithHardWraps(),
+			html.WithXHTML(),
+		),
 	)
+	Posts = BlogPosts()
 }
 
-func BlogPostMetadata() []Blogpost {
-	posts, err := filepath.Glob("markdown/*.md")
+func BlogPosts() []Blogpost {
+	files, err := filepath.Glob("markdown/*.md")
 	if err != nil {
 		panic(err.Error())
 	}
-	var blogposts []Blogpost
+	var posts []Blogpost
 
-	for _, post := range posts {
+	for _, file := range files {
 		var buf bytes.Buffer
+		var blogpost Blogpost
+
 		context := parser.NewContext()
 
-		file, err := os.ReadFile(post)
+		fileread, err := os.ReadFile(file)
 		if err != nil {
 			panic(err.Error())
 		}
 
-		if err := md.Convert(file, &buf, parser.WithContext(context)); err != nil {
+		if err := MD.Convert(fileread, &buf, parser.WithContext(context)); err != nil {
 			panic(err.Error())
 		}
 
+		//	header
 		metadata := meta.Get(context)
-
-		var blogpost Blogpost
 
 		blogpost.Title = fmt.Sprintf("%v", metadata["Title"])
 		if metadata["Summary"] != nil {
@@ -60,9 +74,12 @@ func BlogPostMetadata() []Blogpost {
 		if metadata["Tags"] != nil {
 			blogpost.Tags = append(blogpost.Tags, fmt.Sprintf("%v", metadata["Tags"]))
 		}
-
-		blogposts = append(blogposts, blogpost)
+		// Blogpost content
+		blogpost.Content = template.HTML(buf.String()) // fuck go, fuck stackoverflow, fuck gin, fuck goldmark
+		// "can i also get fucked?" - Laura
+		//
+		posts = append(posts, blogpost)
 	}
 
-	return blogposts
+	return posts
 }
