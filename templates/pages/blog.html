@@ -3,7 +3,7 @@
 {{range .posts}}
     <div id="blogpostpreview"> 
         <ul>
-            <li id="BlogPostTitle">{{.Title}}</li>
+            <li id="BlogPostTitle"><a href="blog/{{.Id}}">{{.Title}}</a></li>
             {{if .Summary}}
             <li id="Summary">{{.Summary}}</li>
             {{end}}

@@ -23,15 +23,10 @@ html {
 li {
     list-style: none;
     a {
-        font-size: 1.3rem;
-        color: @link-color;
+        color: @link-color !important;
         text-decoration: underline 0.10em rgba(255, 255, 255, 0);
         transition: text-decoration-color 300ms;
-            
-        &:visited {
-            color: @link-color;
-        }
-    
+
         &:hover {
             text-decoration-color: @link-hover-color;
         }
@@ -79,6 +74,7 @@ header {
         background-clip: text;
     }
     nav #navmenu {
+        font-size: 1.3rem;
         margin-top: 1rem;
         font-family: monospace;
         .rowflex();
@@ -109,7 +105,7 @@ footer {
         gap: 0.1rem;
     }
     div {
-        position: inherit;
+        position: fixed;
         bottom: 0;
         a {
             .alttext();

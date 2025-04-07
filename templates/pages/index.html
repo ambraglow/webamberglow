@@ -14,14 +14,11 @@
         {{range .posts}}
         <div id="blogpostpreview"> 
             <ul>
-                <li id="BlogPostTitle">{{.Title}}</li>
-                <button href="/">-></button>
+                <li id="BlogPostTitle"><a href="blog/{{.Id}}">{{.Title}}</a></li>
             </ul>
         </div>
         {{end}}
     </div>
-    <div id="emptydiv">
-
-    </div>
+    <div id="emptydiv"></div>
 </div>
 {{end}}

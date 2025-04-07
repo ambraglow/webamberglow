@@ -1,6 +1,6 @@
 ---
 Title: X201 battery insides
-Id: 5
+Id: 4
 Summary:
 Tags:
     - Thinkpad

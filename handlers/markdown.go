@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"os"
 	"path/filepath"
+	"strconv"
 
 	"github.com/yuin/goldmark"
 	meta "github.com/yuin/goldmark-meta"
@@ -22,6 +23,7 @@ type Blogpost struct {
 	Title   string
 	Summary string
 	Tags    []string
+	Id      int
 	Content template.HTML
 }
 
@@ -73,6 +75,9 @@ func BlogPosts() []Blogpost {
 		}
 		if metadata["Tags"] != nil {
 			blogpost.Tags = append(blogpost.Tags, fmt.Sprintf("%v", metadata["Tags"]))
+		}
+		if metadata["Id"] != nil {
+			blogpost.Id, err = strconv.Atoi(fmt.Sprintf("%v", metadata["Id"]))
 		}
 		// Blogpost content
 		blogpost.Content = template.HTML(buf.String()) // fuck go, fuck stackoverflow, fuck gin, fuck goldmark

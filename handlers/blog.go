@@ -23,7 +23,7 @@ func GetPost(c *gin.Context) {
 
 	data := map[string]interface{}{
 		"title": "./Ambraglow/blog",
-		"style": "blog.less",
+		"style": "post.less",
 		"stuff": Posts[postid].Content,
 	}
 

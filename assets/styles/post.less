@@ -1,0 +1,49 @@
+@import url("style.less");
+
+h1 {
+    .header();
+}
+
+h2 {
+    .header2();
+}
+
+main {
+    .colflex();
+    gap: 0.5rem;
+    p {
+        img {
+            order: -1;
+            width: 24rem;
+            height: auto;
+        }
+        font-size: 12px;
+    }
+}
+
+body {
+    overflow: scroll;
+}
+
+footer {
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    div {
+        position: fixed;
+        bottom: 0;
+        a {
+            .alttext();
+        }
+        button {
+            background: none;
+            border: none;
+            color: gray;
+            
+            &:hover {
+                cursor:pointer;
+            }
+        }
+    }
+
+}
