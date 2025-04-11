@@ -55,6 +55,22 @@
 	opacity: 90%;
 }
 
+.listreset {
+	li {
+		list-style: none;
+		a {
+			color: var(--link-color);
+			text-decoration: none;
+			transition: none;
+
+			&:hover {
+				color: var(--link-hover-color) !important;
+			}
+		}
+		user-select: none;
+	}	
+}
+
 html,
 body,
 ul,

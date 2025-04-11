@@ -82,7 +82,7 @@ func BlogPosts() []Blogpost {
 		// Blogpost content
 		blogpost.Content = template.HTML(buf.String()) // fuck go, fuck stackoverflow, fuck gin, fuck goldmark
 		// "can i also get fucked?" - Laura
-		//
+		// ":3" - Ambra
 		posts = append(posts, blogpost)
 	}
 

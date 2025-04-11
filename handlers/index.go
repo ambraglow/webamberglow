@@ -6,14 +6,25 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func slice(a []Blogpost, start, end int) []Blogpost {
-	return a[start:end]
+type Person struct {
+	Name   string
+	Social string
+	Quote  string
 }
 
 func IndexRoute(c *gin.Context) {
+	people := []Person{
+		{"luxploit.net", "https://bsky.app/profile/luxploit.net", "MY WIFE"},
+		{"Nora", "", ""},
+		{"Arya", "https://0xarya.gay", ""},
+		{"WifiCable", "", ""},
+		{"NSG650", "https://bsky.app/profile/nsg650.bsky.social", "Planes are manufactured by Boeing, I have no idea what I'm doing"},
+	}
+
 	c.HTML(http.StatusOK, "index.html", gin.H{
-		"title": "./Ambraglow/hideout",
-		"style": "index.less",
-		"posts": Posts,
+		"title":  "./Ambraglow/hideout",
+		"style":  "index.less",
+		"posts":  Posts,
+		"people": people,
 	})
 }

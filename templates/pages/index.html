@@ -3,8 +3,8 @@
 <div id="intro">
     <a id="selfietext"><img src="data:," alt>Hello ^_^</a>
     <p>Hi, welcome to my website!<br>
-        I go by Ambra, from Italy, 19 years old.
-        This website will include a blog section and a section dedicated to my hobbies and various projects.
+        I go by Ambra, from Italy, 19 years old.<br>
+        Check out the blog section!
     </p>
 </div>
 
@@ -20,5 +20,13 @@
         {{end}}
     </div>
     <div id="emptydiv"></div>
+    <div id="peoplediv">
+        <h1>People</h1>
+        <ul>
+            {{range .people}}
+                <li><a href="{{.Social}}" title="{{.Quote}}">{{.Name}}</a></li>
+            {{end}}
+        </ul>
+    </div>
 </div>
 {{end}}

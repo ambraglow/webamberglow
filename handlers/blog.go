@@ -28,6 +28,7 @@ func GetPost(c *gin.Context) {
 			"style": "post.less",
 			"stuff": Posts[postid].Content,
 		}
+
 		c.HTML(http.StatusOK, "blogpost.html", data)
 	} else {
 		FourfourRoute(c)

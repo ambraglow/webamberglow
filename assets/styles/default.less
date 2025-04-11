@@ -47,6 +47,18 @@ body {
             color: black;
         }
     }
+    h1 {
+        &::selection {
+            background: (@highlighter-color / 1.08);
+            color: black;
+        }
+    }
+    a {
+        &::selection {
+            background: (@highlighter-color / 1.08);
+            color: black;
+        }
+    }
     .colflex();
     justify-content: unset;
     gap: 2rem;

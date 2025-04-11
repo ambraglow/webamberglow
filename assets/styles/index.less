@@ -9,11 +9,13 @@ h2 {
 }
 
 main {
+    .listreset();
     .colflex();
     align-items: center;
     gap: 2rem;
-
+    
     #intro {
+        width: 50%;
         .rowflex();
         gap: 1rem;
         p {
@@ -36,6 +38,10 @@ main {
     #intro2 {
         width: 100%;
         .rowflex();
+        #peoplediv,
+        ul {
+            .colflex();
+        }
     }
 
     #posts {
