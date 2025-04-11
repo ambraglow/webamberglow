@@ -21,21 +21,7 @@
             {{ template "content" .}}
         </main>
         <footer>
-            <div>
-                <button onclick="switchTheme()">Theme</button>
-                <a>~ WIP: eye laser mode</a>
-            </div>
-            <ul id="socials">
-                <li><a href="https://github.com/ambraglow"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Github_logo_svg.svg"></a></li>
-                <li><a href="https://bsky.app/profile/ambraglow.org"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Bluesky_Logo.svg"></a></li>
-            </ul>
-            <ul id="buttons">
-                <li><img src="/assets/buttons/cat.gif"></li>
-                <li><img src="/assets/buttons/antifa.gif"></li>
-                <li><img src="/assets/buttons/github.gif"></li>
-                <li><img src="/assets/buttons/noaa.gif"></li>
-                <li><img src="/assets/buttons/transnow.gif"></li>
-            </ul>
+            {{ template "footer" .}}
         </footer>
         <script>
             const html = document.querySelector("html")
@@ -57,11 +43,15 @@
             const osColors = window.matchMedia('(prefers-color-scheme: dark)');
             const overrideColor = window.localStorage.getItem('override-color')
             
-            if (overrideColor !== "dark" || overrideColor !== "light") {
-                setTheme(osColors.matches ? 'dark' : 'light')
-            } else {
-                setTheme(overrideColor)
+            function overrideColorCheck() {
+                if (overrideColor !== null) {
+                    setTheme(overrideColor)
+                } else {
+                    setTheme(osColors.matches ? 'dark' : 'light')
+                }
             }
+
+            overrideColorCheck()
 
             osColors.addEventListener('change', function(e) {
                 const isDark = e.matches

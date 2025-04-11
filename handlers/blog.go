@@ -18,15 +18,18 @@ func BlogRoute(c *gin.Context) {
 func GetPost(c *gin.Context) {
 	postid, err := strconv.Atoi(c.Param("Id"))
 	if err != nil {
+		FourfourRoute(c)
 		panic(err.Error())
 	}
 
-	data := map[string]interface{}{
-		"title": "./Ambraglow/blog",
-		"style": "post.less",
-		"stuff": Posts[postid].Content,
+	if !(postid >= len(Posts)) {
+		data := map[string]interface{}{
+			"title": "./Ambraglow/blog",
+			"style": "post.less",
+			"stuff": Posts[postid].Content,
+		}
+		c.HTML(http.StatusOK, "blogpost.html", data)
+	} else {
+		FourfourRoute(c)
 	}
-
-	c.HTML(http.StatusOK, "blogpost.html", data)
-
 }

@@ -1,17 +1,21 @@
 @import url("style.less");
 
 :root[data-theme="theme-light"] {
-    --bg-color: #fff6ee;
-    --link-color: #ffaaff;
-    --link-hover-color: #ffaad4;
+    --bg-color: #fcecdf;
+    --header-color: #ffaeb2;
+    --link-color: #f8bbbe;
+    --link-hover-color: #fac2c5;
+    --alttext-color: #AAAFAA;
     --p-color: #000000;
     --img-invert: 1;
 }
 
 :root[data-theme="theme-dark"] {
     --bg-color: #1d1d1d;
+    --header-color: #ffddff;
     --link-color: #ffddff;
     --link-hover-color: #eeddff;
+    --alttext-color: #ddffdd;
     --p-color: #ffff;
     --img-invert: 0;
 }
@@ -23,12 +27,12 @@ html {
 li {
     list-style: none;
     a {
-        color: @link-color !important;
+        color: var(--link-color) !important;
         text-decoration: underline 0.10em rgba(255, 255, 255, 0);
         transition: text-decoration-color 300ms;
 
         &:hover {
-            text-decoration-color: @link-hover-color;
+            text-decoration-color: var(--link-hover-color);
         }
     }
     user-select: none;
@@ -63,6 +67,21 @@ header {
     nav {
         margin-top: 8%;
         .colflex();
+
+        #navmenu {
+            .rowflex();
+            font-size: 1.3rem;
+            margin-top: 1rem;
+            font-family: monospace;
+            margin-bottom: 0.5rem;
+            a {
+                color: @link-color !important;
+
+                &:hover {
+                    text-decoration-color: @link-color;
+                }
+            }
+        }
     }
     #title {
         text-align: center;
@@ -72,13 +91,6 @@ header {
         color: transparent;
         background: linear-gradient(@link-hover-color, @link-color, @link-hover-color);
         background-clip: text;
-    }
-    nav #navmenu {
-        font-size: 1.3rem;
-        margin-top: 1rem;
-        font-family: monospace;
-        .rowflex();
-        margin-bottom: 0.5rem;
     }
     user-select: none;
 }
