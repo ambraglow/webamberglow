@@ -1,7 +1,7 @@
 {{define "content"}}
 
 {{range .posts}}
-    <div id="blogpostpreview"> 
+    <div class="blogpostpreview"> 
         <ul>
             <li id="BlogPostTitle"><a href="blog/{{.Id}}">{{.Title}}</a></li>
             {{if .Summary}}

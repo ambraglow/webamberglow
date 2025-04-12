@@ -28,3 +28,17 @@ func IndexRoute(c *gin.Context) {
 		"people": people,
 	})
 }
+
+func HobbiesRoute(c *gin.Context) {
+	parameter := c.Param("hobby")
+	switch parameter {
+	case "photography":
+		c.HTML(http.StatusOK, "photography.html", gin.H{
+			"title": "./Ambraglow/hideout",
+			"style": "post.less",
+		})
+	default:
+		FourfourRoute(c)
+	}
+
+}
