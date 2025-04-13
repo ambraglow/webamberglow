@@ -34,7 +34,7 @@ func HobbiesRoute(c *gin.Context) {
 	switch parameter {
 	case "photography":
 		c.HTML(http.StatusOK, "photography.html", gin.H{
-			"title": "./Ambraglow/hideout",
+			"title": "./Ambraglow/Photography",
 			"style": "post.less",
 		})
 	default:
