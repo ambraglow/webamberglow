@@ -13,9 +13,9 @@ main {
     .colflex();
     align-items: center;
     gap: 2rem;
-    
+    justify-content: flex-start;
+
     #intro {
-        width: 50%;
         .rowflex();
         gap: 1rem;
         p {
@@ -36,6 +36,7 @@ main {
     }
 
     #intro2 {
+        flex-wrap: wrap;
         width: 100%;
         .rowflex();
         #peoplediv,
