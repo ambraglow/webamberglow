@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Blog posts list page
 func BlogRoute(c *gin.Context) {
 	c.HTML(http.StatusOK, "blog.html", gin.H{
 		"title": "./Ambraglow/blog",
@@ -15,10 +16,11 @@ func BlogRoute(c *gin.Context) {
 	})
 }
 
+// Serve blog post by identifying number in request
 func GetPost(c *gin.Context) {
 	postid, err := strconv.Atoi(c.Param("Id"))
 	if err != nil {
-		FourfourRoute(c)
+		HandleNotFound(c)
 		panic(err.Error())
 	}
 
@@ -31,6 +33,6 @@ func GetPost(c *gin.Context) {
 
 		c.HTML(http.StatusOK, "blogpost.html", data)
 	} else {
-		FourfourRoute(c)
+		HandleNotFound(c)
 	}
 }

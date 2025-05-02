@@ -24,7 +24,7 @@ func main() {
 	router.Static("/assets", "./assets")
 	router.HTMLRender = loadTemplates("templates")
 
-	router.NoRoute(handlers.FourfourRoute)
+	router.NoRoute(handlers.HandleNotFound)
 
 	router.GET("/", handlers.IndexRoute)
 	router.GET("/blog", handlers.BlogRoute)

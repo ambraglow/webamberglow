@@ -28,6 +28,7 @@ type Blogpost struct {
 }
 
 func BlogMarkdownInit() {
+	// initialize goldmark context
 	MD = goldmark.New(
 		goldmark.WithExtensions(
 			meta.Meta,
@@ -41,13 +42,35 @@ func BlogMarkdownInit() {
 			html.WithXHTML(),
 		),
 	)
-	Posts = BlogPosts()
+	// returns a struct containing the blog posts
+	Posts, _ = BlogPosts()
 }
 
-func BlogPosts() []Blogpost {
+func readTags(metadata map[string]interface{}, blogpost Blogpost) Blogpost {
+	if metadata["Tags"] != nil {
+		blogpost.Tags = append(blogpost.Tags, fmt.Sprintf("%v", metadata["Tags"]))
+	}
+	return blogpost
+}
+
+func readSummary(metadata map[string]interface{}, blogpost Blogpost) Blogpost {
+	if metadata["Summary"] != nil {
+		blogpost.Summary = fmt.Sprintf("%v", metadata["Summary"])
+	}
+	return blogpost
+}
+
+func readId(metadata map[string]interface{}, blogpost Blogpost) Blogpost {
+	if metadata["Id"] != nil {
+		blogpost.Id, _ = strconv.Atoi(fmt.Sprintf("%v", metadata["Id"]))
+	}
+	return blogpost
+}
+
+func BlogPosts() ([]Blogpost, error) {
 	files, err := filepath.Glob("markdown/*.md")
 	if err != nil {
-		panic(err.Error())
+		return nil, fmt.Errorf("Path not found: %w", err)
 	}
 	var posts []Blogpost
 
@@ -59,32 +82,28 @@ func BlogPosts() []Blogpost {
 
 		fileread, err := os.ReadFile(file)
 		if err != nil {
-			panic(err.Error())
+			return nil, fmt.Errorf("couldn't read blog post file: %w", err)
 		}
 
 		if err := MD.Convert(fileread, &buf, parser.WithContext(context)); err != nil {
 			panic(err.Error())
 		}
 
-		//	header
+		//	Fill out the header information
 		metadata := meta.Get(context)
 
 		blogpost.Title = fmt.Sprintf("%v", metadata["Title"])
-		if metadata["Summary"] != nil {
-			blogpost.Summary = fmt.Sprintf("%v", metadata["Summary"])
-		}
-		if metadata["Tags"] != nil {
-			blogpost.Tags = append(blogpost.Tags, fmt.Sprintf("%v", metadata["Tags"]))
-		}
-		if metadata["Id"] != nil {
-			blogpost.Id, err = strconv.Atoi(fmt.Sprintf("%v", metadata["Id"]))
-		}
-		// Blogpost content
+
+		readSummary(metadata, blogpost)
+		readTags(metadata, blogpost)
+		readId(metadata, blogpost)
+
+		// Insert the blog post post content
 		blogpost.Content = template.HTML(buf.String()) // fuck go, fuck stackoverflow, fuck gin, fuck goldmark
 		// "can i also get fucked?" - Laura
 		// ":3" - Ambra
 		posts = append(posts, blogpost)
 	}
 
-	return posts
+	return posts, nil
 }

@@ -38,7 +38,7 @@ func HobbiesRoute(c *gin.Context) {
 			"style": "post.less",
 		})
 	default:
-		FourfourRoute(c)
+		HandleNotFound(c)
 	}
 
 }

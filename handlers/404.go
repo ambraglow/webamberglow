@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func FourfourRoute(c *gin.Context) {
+func HandleNotFound(c *gin.Context) {
 	data := map[string]interface{}{
 		"title": "./Ambraglow/blog",
 		"style": "index.less",
