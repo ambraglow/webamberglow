@@ -10,18 +10,26 @@ h2 {
 
 main {
     overflow-y: visible;
-    .colflex();
-    gap: 1rem;
-    p {
-        img {
-            padding: 10px 10px;
-            width: 20rem;
-            height: auto;
+    .rowflex();
+    gap: 0;
+    align-items: center;
+    justify-content: center;
+    .blogpost {
+        .colflex();
+        gap: 1rem;
+        max-width: 50%;
+        p {
+            img {
+                padding: 10px 10px;
+                width: 20rem;
+                height: auto;
+            }
+            font-size: 16px;
         }
-        font-size: 16px;
-    }
-    ul {
-        color: whitesmoke;
+        ul {
+            color: whitesmoke;
+        }
+    
     }
     #Hobbies {
         .colflex();
