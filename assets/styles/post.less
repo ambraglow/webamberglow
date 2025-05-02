@@ -9,16 +9,19 @@ h2 {
 }
 
 main {
+    overflow-y: visible;
     .colflex();
-    justify-content:flex-start;
-    gap: 0.5rem;
+    gap: 1rem;
     p {
         img {
-            order: -1;
-            width: 24rem;
+            padding: 10px 10px;
+            width: 20rem;
             height: auto;
         }
-        font-size: 12px;
+        font-size: 16px;
+    }
+    ul {
+        color: whitesmoke;
     }
     #Hobbies {
         .colflex();
@@ -38,6 +41,7 @@ main {
             margin-bottom: 10px;
         }
     }
+    height: auto;
 }
 
 body {
@@ -45,6 +49,7 @@ body {
 }
 
 footer {
+    height: 0;
     visibility: hidden;
 }
 

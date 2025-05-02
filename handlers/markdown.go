@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"strconv"
 
+	"github.com/stefanfritsch/goldmark-fences"
 	"github.com/yuin/goldmark"
 	meta "github.com/yuin/goldmark-meta"
 	"github.com/yuin/goldmark/extension"
@@ -33,38 +34,17 @@ func BlogMarkdownInit() {
 		goldmark.WithExtensions(
 			meta.Meta,
 			extension.Linkify,
+			&fences.Extender{},
 		),
 		goldmark.WithParserOptions(
 			parser.WithAutoHeadingID(),
 		),
 		goldmark.WithRendererOptions(
-			html.WithHardWraps(),
 			html.WithXHTML(),
 		),
 	)
 	// returns a struct containing the blog posts
 	Posts, _ = BlogPosts()
-}
-
-func readTags(metadata map[string]interface{}, blogpost Blogpost) Blogpost {
-	if metadata["Tags"] != nil {
-		blogpost.Tags = append(blogpost.Tags, fmt.Sprintf("%v", metadata["Tags"]))
-	}
-	return blogpost
-}
-
-func readSummary(metadata map[string]interface{}, blogpost Blogpost) Blogpost {
-	if metadata["Summary"] != nil {
-		blogpost.Summary = fmt.Sprintf("%v", metadata["Summary"])
-	}
-	return blogpost
-}
-
-func readId(metadata map[string]interface{}, blogpost Blogpost) Blogpost {
-	if metadata["Id"] != nil {
-		blogpost.Id, _ = strconv.Atoi(fmt.Sprintf("%v", metadata["Id"]))
-	}
-	return blogpost
 }
 
 func BlogPosts() ([]Blogpost, error) {
@@ -94,9 +74,17 @@ func BlogPosts() ([]Blogpost, error) {
 
 		blogpost.Title = fmt.Sprintf("%v", metadata["Title"])
 
-		readSummary(metadata, blogpost)
-		readTags(metadata, blogpost)
-		readId(metadata, blogpost)
+		if metadata["Summary"] != nil {
+			blogpost.Summary = fmt.Sprintf("%v", metadata["Summary"])
+		}
+
+		if metadata["Tags"] != nil {
+			blogpost.Tags = append(blogpost.Tags, fmt.Sprintf("%v", metadata["Tags"]))
+		}
+
+		if metadata["Id"] != nil {
+			blogpost.Id, _ = strconv.Atoi(fmt.Sprintf("%v", metadata["Id"]))
+		}
 
 		// Insert the blog post post content
 		blogpost.Content = template.HTML(buf.String()) // fuck go, fuck stackoverflow, fuck gin, fuck goldmark
