@@ -14,7 +14,7 @@ type Person struct {
 
 func IndexRoute(c *gin.Context) {
 	people := []Person{
-		{"luxploit.net", "https://bsky.app/profile/luxploit.net", "MY WIFE"},
+		{"luxploit.net", "https://luxploit.net", "MY WIFE"},
 		{"Nora", "", ""},
 		{"Arya", "https://0xarya.gay", ""},
 		{"WifiCable", "", ""},
