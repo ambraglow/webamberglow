@@ -24,7 +24,7 @@ func GetPost(c *gin.Context) {
 		panic(err.Error())
 	}
 
-	if !(postid >= len(Posts)) {
+	if postid <= len(Posts) {
 		data := map[string]interface{}{
 			"title": "./Ambraglow/blog",
 			"style": "post.less",
