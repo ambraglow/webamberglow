@@ -1,7 +1,7 @@
 ---
 Title: Useful links
 Id: 5
-Summary:
+Summary: collection of useful links
 Tags:
 ---
 
