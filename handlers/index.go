@@ -15,10 +15,10 @@ type Person struct {
 func IndexRoute(c *gin.Context) {
 	people := []Person{
 		{"luxploit.net", "https://luxploit.net", "MY WIFE"},
-		{"Nora", "", ""},
-		{"Arya", "https://0xarya.gay", ""},
-		{"WifiCable", "", ""},
-		{"NSG650", "https://bsky.app/profile/nsg650.bsky.social", "Planes are manufactured by Boeing, I have no idea what I'm doing"},
+		{"Nora", "https://github.com/wandering-nora", "Gay ass bottom"},
+		{"Arya", "https://0xarya.gay", "Many such cases"},
+		{"WifiCable", "https://github.com/a-little-wifi/", "Remove ribs"},
+		{"NSG650", "https://nsg650.github.io/", "Planes are manufactured by Boeing, I have no idea what I'm doing"},
 	}
 
 	c.HTML(http.StatusOK, "index.html", gin.H{

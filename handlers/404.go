@@ -6,7 +6,7 @@ import (
 
 func HandleNotFound(c *gin.Context) {
 	data := map[string]interface{}{
-		"title": "./Ambraglow/blog",
+		"title": "./Ambraglow/404",
 		"style": "index.less",
 	}
 	c.HTML(404, "404.html", data)
