@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strconv"
 
-	"github.com/stefanfritsch/goldmark-fences"
+	fences "github.com/stefanfritsch/goldmark-fences"
 	"github.com/yuin/goldmark"
 	meta "github.com/yuin/goldmark-meta"
 	"github.com/yuin/goldmark/extension"
@@ -84,6 +84,8 @@ func BlogPosts() ([]Blogpost, error) {
 
 		if metadata["Id"] != nil {
 			blogpost.Id, _ = strconv.Atoi(fmt.Sprintf("%v", metadata["Id"]))
+			fmt.Print("post Id logged:")
+			fmt.Println(blogpost.Id)
 		}
 
 		// Insert the blog post post content
