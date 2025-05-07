@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"fmt"
+	"html/template"
 	"net/http"
 	"strconv"
 
@@ -26,15 +26,25 @@ func GetPost(c *gin.Context) {
 	}
 
 	if postid <= len(Posts) {
+		var content template.HTML
+
+		for _, post := range Posts {
+			if postid == post.Id {
+				content = Posts[post.Id].Content
+			}
+		}
+
 		data := map[string]interface{}{
 			"title": "./Ambraglow/blog",
 			"style": "post.less",
-			"stuff": Posts[postid].Content,
+			"stuff": content,
 		}
-		fmt.Println("post id:")
-		fmt.Println(postid)
-		fmt.Println("post's post id:")
-		fmt.Println(Posts[postid].Id)
+		/*
+			fmt.Println("post id:")
+			fmt.Println(postid)
+			fmt.Println("post's post id:")
+			fmt.Println(Posts[postid].Id)
+		*/
 
 		c.HTML(http.StatusOK, "blogpost.html", data)
 	} else {
