@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -30,6 +31,10 @@ func GetPost(c *gin.Context) {
 			"style": "post.less",
 			"stuff": Posts[postid].Content,
 		}
+		fmt.Println("post id:")
+		fmt.Println(postid)
+		fmt.Println("post's post id:")
+		fmt.Println(Posts[postid].Id)
 
 		c.HTML(http.StatusOK, "blogpost.html", data)
 	} else {
