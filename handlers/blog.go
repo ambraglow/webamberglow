@@ -29,7 +29,9 @@ func GetPost(c *gin.Context) {
 		var content template.HTML
 
 		for _, post := range Posts {
-			content = Posts[post.Id].Content
+			if post.Id == postid {
+				content = Posts[post.Id].Content
+			}
 		}
 
 		data := map[string]interface{}{
