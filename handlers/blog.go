@@ -29,8 +29,8 @@ func GetPost(c *gin.Context) {
 		var content template.HTML
 
 		for _, post := range Posts {
-			if post.Id == postid {
-				content = Posts[post.Id].Content
+			if postid == post.Id {
+				content = post.Content
 			}
 		}
 
@@ -39,12 +39,6 @@ func GetPost(c *gin.Context) {
 			"style": "post.less",
 			"stuff": content,
 		}
-		/*
-			fmt.Println("post id:")
-			fmt.Println(postid)
-			fmt.Println("post's post id:")
-			fmt.Println(Posts[postid].Id)
-		*/
 
 		c.HTML(http.StatusOK, "blogpost.html", data)
 	} else {
