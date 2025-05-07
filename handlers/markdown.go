@@ -84,6 +84,8 @@ func BlogPosts() ([]Blogpost, error) {
 
 		if metadata["Id"] != nil {
 			blogpost.Id, _ = strconv.Atoi(fmt.Sprintf("%v", metadata["Id"]))
+			fmt.Print("Title: ")
+			fmt.Print(blogpost.Title)
 			fmt.Print("post Id logged:")
 			fmt.Println(blogpost.Id)
 		}
